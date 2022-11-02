@@ -30,8 +30,8 @@ body.wrong {
 }
 
 .container {
-  width: 500px;
-  max-width: 50%;
+  width: 800px;
+  max-width: 80%;
   background-color: white;
   border-radius: 5px;
   padding: 55px;
@@ -88,7 +88,7 @@ body.wrong {
 .button {
   margin: 0;
   position: absolute;
-  top: 56%;
+  top: 60%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
