@@ -86,9 +86,12 @@ body.wrong {
 }
 
 .button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   border-radius: 100px;
   padding: 10px 20px;
   cursor: pointer;
@@ -114,4 +117,17 @@ body.wrong {
   border-radius: 5px;
   padding: 55px;
   box-shadow: 0 0 10px 2px;
+}
+
+.score-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

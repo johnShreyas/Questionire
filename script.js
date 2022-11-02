@@ -3,12 +3,23 @@ const nextbutton = document.getElementById("next-btn");
 const questionContainerElement = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answer-buttons");
+const scoreTracker = document.getElementById("score-tracker");
+const scoreUpElement = document.getElementById("score-up");
 
 let shuffledQuestions, currentQuestionIndex;
 
 var sec = 60;
 var time = setInterval(myTimer, 1000);
-var score = 0;
+
+function processResults(isCorrect) {
+  if (!isCorrect) {
+    return;
+  }
+
+  const scoreUp = parseInt(scoreUpElement.textContent, 10) || 0;
+
+  scoreUpElement.textContent = scoreUp + 100;
+}
 
 function myTimer() {
   document.getElementById("timer").innerHTML = sec + "sec";
@@ -17,6 +28,8 @@ function myTimer() {
   if (sec == -1) {
     clearInterval(time);
     alert("Time out!! :(");
+    nextbutton.classList.add("hide");
+    answerButtonsElement.classList.add("hide");
   }
 }
 
@@ -28,12 +41,16 @@ nextbutton.addEventListener("click", () => {
 
 function startGame() {
   console.log("started");
+  score = 0;
   startButton.classList.add("hide");
   shuffledQuestions = questions.sort(() => Math.random(0.5));
   currentQuestionIndex = 0;
   questionContainerElement.classList.remove("hide");
+  scoreTracker.classList.remove("hide");
   setNextQuestion();
+  scoreUpElement.textContent = 0;
 }
+
 function setNextQuestion() {
   resetState();
   showQuestion(shuffledQuestions[currentQuestionIndex]);
@@ -46,6 +63,7 @@ function showQuestion(question) {
     button.classList.add("btn");
     if (answer.correct) {
       button.dataset.correct = answer.correct;
+      answerButtonsElement.classList.remove("hide");
     }
     button.addEventListener("click", selectAnswer);
     answerButtonsElement.appendChild(button);
@@ -63,12 +81,14 @@ function resetState() {
 function selectAnswer(e) {
   const selectedButton = e.target;
   const correct = selectedButton.dataset.correct;
+  processResults(correct);
   setStatusClass(document.body, correct);
   Array.from(answerButtonsElement.children).forEach((button) => {
     setStatusClass(button, button.dataset.correct);
   });
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextbutton.classList.remove("hide");
+    answerButtonsElement.classList.add("hide");
   } else {
     startButton.classList.add("hide");
   }
@@ -193,6 +213,42 @@ const questions = [
       { text: "Idle", correct: false },
       { text: "Vada", correct: false },
       { text: "Samosa", correct: false },
+    ],
+  },
+  {
+    question: "13. Who is the owner of Facebook?",
+    answers: [
+      { text: "Bill gates", correct: false },
+      { text: "Mark Zuckerberg", correct: true },
+      { text: "Jeff Bezos", correct: false },
+      { text: "Warren Buffett", correct: false },
+    ],
+  },
+  {
+    question: "14. in Which year did corona started?",
+    answers: [
+      { text: "2018", correct: false },
+      { text: "2015", correct: false },
+      { text: "2020", correct: false },
+      { text: "2019", correct: true },
+    ],
+  },
+  {
+    question: "15. Who is the CEO of Apple?",
+    answers: [
+      { text: "Jeff Bezos", correct: false },
+      { text: "Elon Musk", correct: false },
+      { text: "Tim cook", correct: true },
+      { text: "None Of the Above", correct: false },
+    ],
+  },
+  {
+    question: "16. Who invented telephone?",
+    answers: [
+      { text: "Alexander Graham Bell", correct: true },
+      { text: "Thomas Edison", correct: false },
+      { text: "Stephen Hawking", correct: false },
+      { text: "Albert Einstein", correct: false },
     ],
   },
 ];
