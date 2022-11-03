@@ -90,6 +90,7 @@ function selectAnswer(e) {
     nextbutton.classList.remove("hide");
     answerButtonsElement.classList.add("hide");
   } else {
+    answerButtonElement.classList.add("hide");
     startButton.classList.add("hide");
   }
 }
