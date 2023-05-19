@@ -252,4 +252,12 @@ const questions = [
       { text: "Albert Einstein", correct: false },
     ],
   },
+  {
+    question: "17. Define Photosynthesis?",
+    answers: [
+      { text: "A process by which phototrophs convert light energy into chemical energy", correct: true },
+      { text: "A process of taking pictures", correct: false },
+      { text: "Sunlight, cholrophyll, water and air", correct: false },
+    ],
+  },
 ];
