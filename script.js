@@ -8,8 +8,8 @@ const scoreUpElement = document.getElementById("score-up");
 
 let shuffledQuestions, currentQuestionIndex;
 
-var sec = 60;
-var time = setInterval(myTimer, 1000);
+var sec = 120;
+var time = setInterval(myTimer, 2000);
 
 function processResults(isCorrect) {
   if (!isCorrect) {
